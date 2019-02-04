@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.flex-container {
+    display: -webkit-flex;
+    display: flex;  
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    text-align: center;
+}
+.flex-container > * {
+    padding: 15px;
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+}
+header {background: #42bcf4;color:white;}
+footer {background: #aaa;color:white;}
+</style>
+	<title>CCI Checker Data</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.material.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.material.min.css">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#datatable').dataTable({
+        		columnDefs: [
+            		{
+            		    targets: [ 0, 1, 2 ],
+            		    className: 'mdl-data-table__cell--non-numeric'
+            		}
+        		]
+        	});
+		});
+	</script>
+</head>
+<body>
+<div class="flex-container">
+<header>
+  <h1>CCI Checker</h1>
+</header>
+</div>
+<div id="table" style="border: 1px solid black; margin: 10px; padding: 2px;">
+{% if actual_data %}
+<table id="datatable" class="mdl-data-table" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>Room ID</th>
+			<th>Student</th>
+			<th>Date</th>
+			<th>List Sent</th>
+			<th>Tasks Completed</th>
+			
+		</tr>
+	</thead>
+	<tbody >
+		{% for m in actual_data %}
+		<tr>
+			<td>{{m.roomID}}</td>
+			<td>{{m.studentUID}}</td>
+			<td>{{m.date_time_stamp}}</td>
+			<td>
+			<ul>
+			{% for list in m.task_list.all %}
+			<li>{{list}}</li>
+			{% endfor %}
+			</ul>
+			</td>
+			<td>
+			<ul>
+			{% for finlist in m.task_completedlist.all %}
+			<li>{{finlist}}</li>
+			{% endfor %}
+			</ul>
+			</td>
+		</tr>
+
+		{% endfor %}
+	</tbody>
+
+</table>
+{% else %}
+    <p>No Checkoff Instances available are available.</p>
+{% endif %}
+</div>
+<div class="flex-container">
+<footer>Copyright &copy; CCI</footer>
+</div>
+</body>
+</html>
+
+
