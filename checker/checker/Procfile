@@ -1,1 +1,1 @@
-web: gunicorn checker.wsgi:application
+web: gunicorn checker.wsgi --log-file -
