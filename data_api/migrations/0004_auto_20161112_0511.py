@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='checkoff_list',
             name='sometext',
-            field=models.CharField(default=datetime.datetime(2016, 11, 12, 5, 11, 35, 540270, tzinfo=utc), max_length=10),
+            field=models.CharField(default=datetime.datetime(2016, 11, 12, 5, 11, 35, 540270, tzinfo=utc), max_length=100),
             preserve_default=False,
         ),
         migrations.AlterField(
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='issue_report',
             name='comment',
-            field=models.CharField(max_length=1000),
+            field=models.CharField(max_length=100),
         ),
         migrations.RemoveField(
             model_name='room',
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='room',
             name='opening_list',
-            field=models.CharField(default=datetime.datetime(2016, 11, 12, 5, 11, 44, 906261, tzinfo=utc), max_length=1000),
+            field=models.CharField(default=datetime.datetime(2016, 11, 12, 5, 11, 44, 906261, tzinfo=utc), max_length=100),
             preserve_default=False,
         ),
     ]

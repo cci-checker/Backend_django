@@ -6,6 +6,7 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
+    atomic = False
 
     dependencies = [
         ('data_api', '0009_auto_20161124_2331'),
